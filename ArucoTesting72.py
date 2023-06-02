@@ -39,7 +39,7 @@ if viewVideo==True:
     print("-------------------------------")
     print("")
 else:
-    seconds=5
+    seconds=10
 counter=0
 counter=float(counter)
 found_count = 0
@@ -59,13 +59,13 @@ while time.time()-start_time<seconds:
         print("Found these IDs in the frame:")
         print(ids)
     if ids is not None and ids[0] == id_to_find:
+        found_count = found_count+1
         ret = aruco.estimatePoseSingleMarkers(corners,marker_size,cameraMatrix=cameraMatrix,distCoeffs=cameraDistortion)
         rvec,tvec = ret[0][0,0,:], ret[1][0,0,:]
         x="{:.2f}".format(tvec[0])
         y="{:.2f}".format(tvec[1])
         z="{:.2f}".format(tvec[2])
-        print("FOUND ARUCO!")
-        found_count=found_count + 1
+        #print("FOUND ARUCO!")
         marker_position="MARKER POSITION: x="+x+" y="+y+" z="+z
         print(marker_position)
         print("")
@@ -76,14 +76,15 @@ while time.time()-start_time<seconds:
             if cv2.waitKey(1) & 0xFF == ord('q'):
                 break
     else:
+        notfound_count=notfound_count+1
         print("ARUCO "+str(id_to_find)+"NOT FOUND IN FRAME.")
         print("")
     counter=float(counter+1)
-    notfound_count = notfound_count + 1
+
 
 if viewVideo==False:
     frequency=realWorldEfficiency*(counter/seconds)
-    DetectionPercentage = (foundcount/(foundcount+notfound_count))*100
+    DetectionPercentage = (found_count/counter)*100
     print("")
     print("")
     print("---------------------------")
