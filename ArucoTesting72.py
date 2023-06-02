@@ -91,7 +91,7 @@ if viewVideo==False:
     print("Loop iterations per second:")
     print(frequency)
     print("---------------------------")
-    print("Total Counter:)
+    print("Total Counter:")
     print(counter)
     print("---------------------------")
     print("Found Count:")
