@@ -90,7 +90,7 @@ if viewVideo==False:
     print("Loop iterations per second:")
     print(frequency)
     print("---------------------------")
-    print("Detection Percentage:)
+    print("Detection Percentage:")
     print(DetectionPercentage)
     print("---------------------------")
 
